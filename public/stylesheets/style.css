@@ -1,0 +1,42 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: rgb(32, 35, 36);
+}
+
+#vv li:hover{
+  background-color: saddlebrown
+}
+#vv li a:hover{
+  color: white;
+}
+#middle-container {
+  margin-top: 20px;
+  width: 100%
+}
+#middle-container .jumbotron{
+  background-color: aliceblue
+}
+.button-div button{
+  margin-left: 10px
+}
+.brand-button-a {
+  color: white;
+}
+.brand-button-a:hover {
+  color: rgb(238, 168, 62);
+  text-decoration: none
+}
+.brand-button-a-default:hover {
+  color: rgb(22, 24, 170);
+  text-decoration: none;
+}
+.brand-button-a-default {
+  color: blacv;
+}
+#description-content div {
+  height: 240px;
+}

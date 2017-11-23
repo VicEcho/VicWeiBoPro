@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  include nav.jade
+  if warning
+    div(class="alert alert-warning" style="margin-top: 20px; width: 46%; margin-left: 8%")
+      span(style="color: red") #{warning}
+  else
+    span
+  div(class="row" style="margin-top: 40px")
+    strong(class="col-sm-1 col-sm-offset-1" style="font-size: x-large") 登陆
+  hr
+  form.form-horizontal(action="/login" method="post" style="margin-top: 20px")
+    div.form-group
+      label(for="name", class="col-sm-1 control-label") 昵称
+      div(class="col-sm-6")
+        input(type="text", class="form-control", id="name", name="name" placeholder="请输入名称")
+     div.form-group
+      label(for="password", class="col-sm-1 control-label") 密码
+      div(class="col-sm-6")
+        input(type="text", class="form-control", id="password", name="password" placeholder="请输入密码")
+    div(class="col-sm-6 col-sm-offset-1")
+      button(class="btn btn-default", type="submit") 提交
+    include footer.jade
