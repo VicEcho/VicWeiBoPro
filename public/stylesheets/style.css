@@ -40,3 +40,10 @@ a {
 #description-content div {
   height: 240px;
 }
+#description-content div div{
+  border-radius: 9px;
+  background-color: #fcf8e3f2;
+}
+/* .body {
+  background-color: rgb(238, 168, 62)
+} */
