@@ -40,9 +40,42 @@ a {
 #description-content div {
   height: 240px;
 }
-#description-content div div{
+#description-content div div {
   border-radius: 9px;
   background-color: #fcf8e3f2;
+}
+.page-list-ul {
+  list-style: none
+}
+.page-list-ul li { 
+  width: 90%;
+  margin: 0 auto;
+  min-height: 40px;
+}
+.page-list--createTime {
+  color: lightcoral;
+  font-size: 12px;
+  font-weight: 600;
+}
+.page-list--createTime2 {
+  color: lightcoral;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+}
+.page-list-title {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 800;
+}
+.page-list-a {
+  color:#04bfff;
+  text-decoration: none;
+}
+.page-list-a:hover {
+  color:#04bfff;  
+  text-decoration: none;
+  cursor: pointer;
 }
 /* .body {
   background-color: rgb(238, 168, 62)

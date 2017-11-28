@@ -2,5 +2,22 @@ extends layout
 
 block content
   include nav.jade
-  p 文章列表
+  div.page-header
+    h3 日志列表
+  ul(class="media-list")
+    each page in pageList
+      li.media
+        div.media-left
+          -var time = page.createTime
+          -var year = time.split('-')[0] + '年'
+          -var mouth = time.split('-')[1] + '月'
+          -var day = time.split('-')[2] + '日'
+          -var newData = mouth + '' + day
+          div(style="width: 56px")
+            div.page-list--createTime #{newData}
+            div.page-list--createTime2 #{year}
+        div.media-body
+          span.page-list-title
+            a.page-list-a #{page.title}
+  a 新增
   include footer.jade
