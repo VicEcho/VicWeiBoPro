@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  include nav.jade
+  p 编辑页面
+  form.form-horizontal
+    div.form-group
+      label(for="title", class="col-sm-1 control-label") 标题
+      div(class="col-sm-6")
+        input(type="text", class="form-control", id="title", name="title" placeholder="请输入标题")
+    div.form-group
+      label(for="description", class="col-sm-1 control-label") 描述
+      div(class="col-sm-6")
+        input(type="text", class="form-control", id="description", name="description" placeholder="请输入密码")
+  div(id="editor" style="max-width:700px;margin:50px")
+    p 请输入内容
+  script(type="text/javascript").
+    (() => {
+        var E = window.wangEditor;
+        editor = new E('#editor');
+        editor.create();
+    })();
+  script(type="text/javascript").
+      "use strict"
+      function getContent() {
+        const title = $("#title").val();
+        const description = $("#description").val();
+        const content = window.editor.txt.html();
+        const params = {
+            title: title,
+            description: description,
+            content: content
+          }
+        const headers = {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        };
+        fetch('/artical/edit', {
+          method: 'POST',
+          credentials: 'include',
+          headers: headers,
+          body: JSON.stringify(params)
+        }).then((response) => {
+          const { statusText, status } = response;
+          return response.json().then(res => {
+            return {
+              data: res,
+              statusCode: status,
+              message: statusText,
+              success: true
+            }
+          })
+        }).then((res) => {
+          location.href = '/artical/list';
+          return res
+        }).catch(err => {
+          console.log('123123')
+        });
+      }
+  div
+    button(class="btn btn-default", onClick="getContent()") 提交
+  include footer.jade

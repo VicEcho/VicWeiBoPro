@@ -19,6 +19,7 @@ var login = require('./routes/login');
 var logout = require('./routes/logout');
 var signOut = require('./routes/signOut');
 var artical = require('./routes/artical');
+// var edit = require('./routes/edit');
 
 var app = express();
 
@@ -46,7 +47,8 @@ app.use('/reg', reg);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/signOut', signOut);
-app.use('/artical_list', artical);
+app.use('/artical', artical);
+// app.use('/edit', edit);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

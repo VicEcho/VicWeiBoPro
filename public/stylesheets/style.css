@@ -80,3 +80,7 @@ a {
 /* .body {
   background-color: rgb(238, 168, 62)
 } */
+#content-div {
+  overflow: hidden;
+  padding-bottom: 20px;
+}
