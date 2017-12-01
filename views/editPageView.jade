@@ -2,7 +2,8 @@ extends layout
 
 block content
   include nav.jade
-  p 编辑页面
+  div.page-header
+   h3 编辑页面
   form.form-horizontal
     div.form-group
       label(for="title", class="col-sm-1 control-label") 标题
@@ -12,8 +13,9 @@ block content
       label(for="description", class="col-sm-1 control-label") 描述
       div(class="col-sm-6")
         input(type="text", class="form-control", id="description", name="description" placeholder="请输入密码")
-  div(id="editor" style="max-width:700px;margin:50px")
-    p 请输入内容
+    div.form-group
+      label(for="content", class="col-sm-1 control-label") 内容
+      div(id="editor" style="max-width:700px;margin-left:10%")
   script(type="text/javascript").
     (() => {
         var E = window.wangEditor;
@@ -57,6 +59,6 @@ block content
           console.log('123123')
         });
       }
-  div
-    button(class="btn btn-default", onClick="getContent()") 提交
+  div(class="col-sm-7")
+    button(class="btn btn-info", id="edit-submit-button" onClick="getContent()") 提交
   include footer.jade

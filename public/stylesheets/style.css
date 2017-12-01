@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: cursive;
 }
 
 a {
@@ -20,6 +21,9 @@ a {
 #middle-container .jumbotron{
   background-color: aliceblue
 }
+.jumbotron p {
+  font-family: cursive;
+}
 .button-div button{
   margin-left: 10px
 }
@@ -37,13 +41,18 @@ a {
 .brand-button-a-default {
   color: blacv;
 }
+#description-content {}
 #description-content div {
   height: 240px;
 }
 #description-content div div {
   border-radius: 9px;
-  background-color: #fcf8e3f2;
 }
+#description-content p {
+  font-size: 16px;
+  font-family: cursive;  
+}
+
 .page-list-ul {
   list-style: none
 }
@@ -68,6 +77,11 @@ a {
   font-size: 16px;
   font-weight: 800;
 }
+.page-list-description {
+  margin-left: 1%;
+  font-size: 12px;
+  font-weight: 600;
+}
 .page-list-a {
   color:#04bfff;
   text-decoration: none;
@@ -83,4 +97,11 @@ a {
 #content-div {
   overflow: hidden;
   padding-bottom: 20px;
+}
+#edit-submit-button {
+  float: right
+}
+.introduce-div {
+  margin-top: 16px;
+  font-size: 16px;
 }

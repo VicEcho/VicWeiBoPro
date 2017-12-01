@@ -23,15 +23,25 @@ block content
                 div.page-list--createTime #{newData}
                 div.page-list--createTime2 #{year}
             div.media-body
-              span.page-list-title
-                a.page-list-a #{page.title}
+              div
+                span.page-list-title
+                  a.page-list-a #{page.title}
+              div
+                span.page-list-description #{page.description}
       div
         div.col-lg-2.col-lg-offset-9
         button(class="btn btn-warning" onclick="vv()") 新增
     div.col-lg-3
-      div(style="margin-top: 44px")
+      div(style="margin-top: 44px;")
         h3 关于作者
-        span Vic Zhang
-        span(style="margin-left: 10%") 江苏省 南京市
-      div(style="background-color: blue; width: 100%; height: 600px")
+        div(style="margin-left: 1%; margin-top: 14px")
+          div.introduce-div
+            span(style="margin-left: 16px") Vic Zhang
+          div.introduce-div
+            span(style="margin-left: 16px") 江苏省 南京市
+          div.introduce-div
+            span
+              img(src="../images/githup-pat.png" style="width: 32px")
+            span(style="margin-left: 16px")
+              a(href="https://github.com/VicEcho"  target="_Blank" style="color: blue") https://github.com/VicEcho
   include footer.jade
