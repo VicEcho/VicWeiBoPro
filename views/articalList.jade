@@ -25,23 +25,11 @@ block content
             div.media-body
               div
                 span.page-list-title
-                  a.page-list-a #{page.title}
+                  a(href=`/artical/detail/${page.id}`).page-list-a #{page.title}
               div
                 span.page-list-description #{page.description}
       div
         div.col-lg-2.col-lg-offset-9
         button(class="btn btn-warning" onclick="vv()") 新增
-    div.col-lg-3
-      div(style="margin-top: 44px;")
-        h3 关于作者
-        div(style="margin-left: 1%; margin-top: 14px")
-          div.introduce-div
-            span(style="margin-left: 16px") Vic Zhang
-          div.introduce-div
-            span(style="margin-left: 16px") 江苏省 南京市
-          div.introduce-div
-            span
-              img(src="../images/githup-pat.png" style="width: 32px")
-            span(style="margin-left: 16px")
-              a(href="https://github.com/VicEcho"  target="_Blank" style="color: blue") https://github.com/VicEcho
+    include introduce.jade
   include footer.jade
