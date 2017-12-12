@@ -9,8 +9,6 @@ router.get('/list', (req, res, next) => {
   });
 });
 router.get('/detail/:id', (req, res, next) => {
-  console.log('__dirname', __dirname);
-  console.log('req.id', req.params.id);
   PageModel.findById(req.params.id, (err, data) => {
     if (data) {
       res.render('articalDetail', {userName: req.cookies.user, page: data, });      
@@ -18,12 +16,17 @@ router.get('/detail/:id', (req, res, next) => {
       console.log('err');
     }
   });
-  // PageModel.find((err, data) => {
-  //   res.render('articalList', { userName: req.cookies.user, pageList: data});    
-  // });
+});
+router.post('/detail/:id', (req, res, next) => {
+  PageModel.findById(req.params.id, (err, data) => {
+    if (data) {
+      res.render('articalDetail', {userName: req.cookies.user, page: data, });      
+    } else {
+      console.log('err');
+    }
+  });
 });
 router.get('/edit', (req, res, next) => {
-  console.log('req.cookies', req.cookies);
  res.render('editPageView', { userName: req.cookies.user});
 });
 router.post('/edit', (req, res, next) => {

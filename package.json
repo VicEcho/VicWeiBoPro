@@ -1,19 +1,32 @@
 {
   "name": "myapp",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "author": "Vic Zhang",
+  "description": "Vic 的第一个node微博程序",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "babel-node ./bin/www",
+    "build": "babel bin -d dist",
+    "serve": "node dist/index.js"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "jade": "~1.11.0",
+    "jstransformer-babel": "^2.1.0",
     "mongoose": "^4.13.3",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5",
     "supervisor": "^0.12.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
   }
 }

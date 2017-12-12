@@ -7,7 +7,6 @@ router.get('/', (req, res, next) => {
 });
 router.post('/', (req, res, next) => {
     users.findOne({name: req.body.name}, (err, data) => {
-        console.log('data', data)
         if(err) {
            console.log('查询出错');
         } else if (!data || data.length <= 0) {

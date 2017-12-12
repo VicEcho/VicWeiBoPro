@@ -7,12 +7,17 @@ block content
       h3 #{page.title}
       div(style="border-right: 1px solid grey; min-height: 600px")
         div.artical-detail-descritpion
-            span(class="glyphicon glyphicon-calendar" style="color: cornflowerblue")
-            span &nbsp; #{page.createTime}
-            span(style='margin-left: 12px') /
-            span(class="glyphicon glyphicon-bookmark" style='margin-left: 12px; color: coral')
-            span &nbsp; #{page.description}
+          span(class="glyphicon glyphicon-calendar" style="color: cornflowerblue")
+          span &nbsp; #{page.createTime}
+          span(style='margin-left: 12px') /
+          span(class="glyphicon glyphicon-bookmark" style='margin-left: 12px; color: coral')
+          span &nbsp; #{page.description}
+        div.artical-detail-operate
+          span
+            span(class="glyphicon glyphicon-trash" style="font-size: 6px; color: red") 删除
+            span(style='margin-left: 6px') /
+            span(class="glyphicon glyphicon-pencil" style="font-size: 6px; color: green; margin-left: 6px") 编辑
         div#artical-detail-content
-            p !{page.content}
+          p !{page.content}
     include introduce.jade
   include footer.jade
