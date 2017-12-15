@@ -1,4 +1,3 @@
-import {exportFunc} from './service';
 function formatDate(date) {
     const year = date.getFullYear();
     const mouth = date.getMonth() + 1;

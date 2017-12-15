@@ -5,6 +5,38 @@ block content
   div.Row#content-div
     div.col-lg-9
       h3 #{page.title}
+      input(id="vvInput" style="visibility: hidden" value=`${page.id}`)
+      script(type="text/javascript").
+        "use strict"
+        function deleteArtical() {
+          const id = $("#vvInput").val();
+          console.log('ssdsdsdsdsd', $("#vvInput"));
+          const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          };
+          //- const id = page.id;
+          fetch(`/artical/detail/${id}`, {
+            method: 'delete',
+            credentials: 'include',
+            headers: headers,
+          }).then((response) => {
+            const { statusText, status } = response;
+            return response.json().then(res => {
+              return {
+                data: res,
+                statusCode: status,
+                message: statusText,
+                success: true
+              }
+            })
+          }).then((res) => {
+            location.href = '/artical/list';
+            return res
+          }).catch(err => {
+            console.log('3333333')
+          });
+        }
       div(style="border-right: 1px solid grey; min-height: 600px")
         div.artical-detail-descritpion
           span(class="glyphicon glyphicon-calendar" style="color: cornflowerblue")
@@ -14,7 +46,8 @@ block content
           span &nbsp; #{page.description}
         div.artical-detail-operate
           span
-            span(class="glyphicon glyphicon-trash" style="font-size: 6px; color: red") 删除
+            span(class="glyphicon glyphicon-trash" style="font-size: 6px; color: red")
+              a(onClick="deleteArtical()") 删除
             span(style='margin-left: 6px') /
             span(class="glyphicon glyphicon-pencil" style="font-size: 6px; color: green; margin-left: 6px") 编辑
         div#artical-detail-content

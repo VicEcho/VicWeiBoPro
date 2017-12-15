@@ -20,6 +20,8 @@ block content
     (() => {
         var E = window.wangEditor;
         editor = new E('#editor');
+        editor.customConfig.uploadImgServer = '/artical/upload';
+        editor.customConfig.uploadFileName = 'file'
         editor.create();
     })();
   script(type="text/javascript").
