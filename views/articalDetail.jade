@@ -10,12 +10,10 @@ block content
         "use strict"
         function deleteArtical() {
           const id = $("#vvInput").val();
-          console.log('ssdsdsdsdsd', $("#vvInput"));
           const headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           };
-          //- const id = page.id;
           fetch(`/artical/detail/${id}`, {
             method: 'delete',
             credentials: 'include',
@@ -34,7 +32,7 @@ block content
             location.href = '/artical/list';
             return res
           }).catch(err => {
-            console.log('3333333')
+            alert('操作失败，服务器异常')
           });
         }
       div(style="border-right: 1px solid grey; min-height: 600px")

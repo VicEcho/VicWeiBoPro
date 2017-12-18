@@ -5,11 +5,13 @@ var PageModel = require('../models/page');
 var multiparty = require('multiparty');
 var mongoose = require('mongoose');
 
+// 进入列表页面
 router.get('/list', (req, res, next) => {
   PageModel.find((err, data) => {
     res.render('articalList', { userName: req.cookies.user, pageList: data});    
   });
 });
+// 进入日志详情页面
 router.get('/detail/:id', (req, res, next) => {
   PageModel.findById(req.params.id, (err, data) => {
     if (data) {
@@ -19,15 +21,15 @@ router.get('/detail/:id', (req, res, next) => {
     }
   });
 });
-router.post('/detail/:id', (req, res, next) => {
-  PageModel.findById(req.params.id, (err, data) => {
-    if (data) {
-      res.render('articalDetail', {userName: req.cookies.user, page: data, });      
-    } else {
-      console.log('err');
-    }
-  });
-});
+// router.post('/detail/:id', (req, res, next) => {
+//   PageModel.findById(req.params.id, (err, data) => {
+//     if (data) {
+//       res.render('articalDetail', {userName: req.cookies.user, page: data, });      
+//     } else {
+//       console.log('err');
+//     }
+//   });
+// });
 // 图片上传
 router.post('/upload', (req, res, next) => {
    var form = new multiparty.Form({uploadDir: './public/files/'});
@@ -39,9 +41,11 @@ router.post('/upload', (req, res, next) => {
      res.send({errno:0, data: [path]});
    });
 });
+// 进入编辑日志页面
 router.get('/edit', (req, res, next) => {
  res.render('editPageView', { userName: req.cookies.user});
 });
+// 新增日志接口
 router.post('/edit', (req, res, next) => {
   var date = new Date();
   var createTime = formatDate(date);
@@ -61,6 +65,7 @@ router.post('/edit', (req, res, next) => {
   // var formatTime = date.format('yyyy-mm-dd');
   // console.log('formatTime', formatTime)
 });
+// 删除日志
 router.delete('/detail/:id', (req, res, next) => {
   var date = new Date();
   const id = req.params.id;

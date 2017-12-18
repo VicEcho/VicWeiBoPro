@@ -58,10 +58,9 @@ block content
           location.href = '/artical/list';
           return res
         }).catch(err => {
-          console.log('123123')
+          alert('操作失败，服务器异常')
         });
       }
   div(class="col-sm-7")
     button(class="btn btn-info", id="edit-submit-button" onClick="getContent()") 提交
-    button(class="btn btn-info", id="edit-submit-button" onClick="sss()") ces
   include footer.jade
