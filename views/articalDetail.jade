@@ -5,7 +5,7 @@ block content
   div.Row#content-div
     div.col-lg-9
       h3 #{page.title}
-      input(id="vvInput" style="visibility: hidden" value=`${page.id}`)
+      input(id="vvInput" style="display: none" value=`${page.id}`)
       script(type="text/javascript").
         "use strict"
         function deleteArtical() {
@@ -45,9 +45,10 @@ block content
         div.artical-detail-operate
           span
             span(class="glyphicon glyphicon-trash" style="font-size: 6px; color: red")
-              a(onClick="deleteArtical()") 删除
-            span(style='margin-left: 6px') /
-            span(class="glyphicon glyphicon-pencil" style="font-size: 6px; color: green; margin-left: 6px") 编辑
+              a(class="artical-detlte" onClick="deleteArtical()") 删除
+            span(style='margin-left: 6px') |
+            span(class="glyphicon glyphicon-pencil" style="font-size: 6px; color: green; margin-left: 6px")
+              a(class="artical-detlte" href=`/artical/edit/${page.id}`) 编辑
         div#artical-detail-content
           p !{page.content}
     include introduce.jade

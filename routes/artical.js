@@ -42,9 +42,26 @@ router.post('/upload', (req, res, next) => {
    });
 });
 // 进入编辑日志页面
-router.get('/edit', (req, res, next) => {
- res.render('editPageView', { userName: req.cookies.user});
+router.get('/edit/:id', (req, res, next) => {
+ console.log('req.params.id', req.params.id);
+ if (req.params.id) {
+  var id = mongoose.Types.ObjectId(req.params.id);
+  PageModel.findById(id, (err, data) => {
+    if (data) {
+      console.log('data', data);
+      res.render('editPageView', { pageDetail: data, userName: req.cookies.user});
+    } else {
+      res.send({err})
+    }
+  });
+ } else {
+  res.render('editPageView', { userName: req.cookies.user});
+ }
 });
+// 进入编辑日志页面
+router.get('/edit', (req, res, next) => {
+  res.render('editPageView', { userName: req.cookies.user});  
+ });
 // 新增日志接口
 router.post('/edit', (req, res, next) => {
   var date = new Date();
@@ -65,12 +82,10 @@ router.post('/edit', (req, res, next) => {
   // var formatTime = date.format('yyyy-mm-dd');
   // console.log('formatTime', formatTime)
 });
-// 删除日志
-router.delete('/detail/:id', (req, res, next) => {
+// 修改日志接口
+router.put('/edit/:id', (req, res, next) => {
+  var id = mongoose.Types.ObjectId(req.params.id);
   var date = new Date();
-  const id = req.params.id;
-  var newId = mongoose.Types.ObjectId(id);
-  console.log('id', typeof(id));
   var createTime = formatDate(date);
   var author = req.cookies.user;
   var newPage = {
@@ -78,7 +93,28 @@ router.delete('/detail/:id', (req, res, next) => {
       author: author,
       createTime: createTime
   }
-  console.log('newId', newId, typeof(newId));
+  PageModel.update({"id": id}, newPage, (err, data) => {
+      if (data) {
+        res.send({data: 'success'})
+      } else {
+         res.send({err})
+      }
+  })
+  // var formatTime = date.format('yyyy-mm-dd');
+  // console.log('formatTime', formatTime)
+});
+// 删除日志
+router.delete('/detail/:id', (req, res, next) => {
+  var date = new Date();
+  const id = req.params.id;
+  var newId = mongoose.Types.ObjectId(id);
+  var createTime = formatDate(date);
+  var author = req.cookies.user;
+  var newPage = {
+      ...req.body,
+      author: author,
+      createTime: createTime
+  }
   PageModel.remove({"_id": newId}, (err, data) => {
       if (data) {
         res.send({data: 'success'})

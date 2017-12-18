@@ -108,3 +108,6 @@ a {
 .artical-detail-descritpion {
   
 }
+.artical-detlte:hover {
+   cursor: pointer;
+}

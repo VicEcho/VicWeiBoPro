@@ -8,21 +8,43 @@ block content
     div.form-group
       label(for="title", class="col-sm-1 control-label") 标题
       div(class="col-sm-6")
-        input(type="text", class="form-control", id="title", name="title" placeholder="请输入标题")
+        if pageDetail
+          input(type="text", class="form-control", id="title", name="title" placeholder="请输入标题" value=`${pageDetail.title}`)
+        else
+          input(type="text", class="form-control", id="title", name="title" placeholder="请输入标题")
     div.form-group
       label(for="description", class="col-sm-1 control-label") 描述
       div(class="col-sm-6")
-        input(type="text", class="form-control", id="description", name="description" placeholder="请输入密码")
+        if pageDetail
+          input(type="text", class="form-control", id="description", name="description" placeholder="请输入描述"  value=`${pageDetail.description}`)
+        else
+          input(type="text", class="form-control", id="description", name="description" placeholder="请输入描述")
     div.form-group
       label(for="content", class="col-sm-1 control-label") 内容
-      div(id="editor" style="max-width:700px;margin-left:10%")
+      div(class="col-sm-6")
+        div(id="edit-operate" class="toolbar")
+        div(style="margin-top: 5px")
+        div(id="editor" class="text" style="max-width:100%; height: 500px")
+    if pageDetail
+     input(id="artical-content" style="display: none" value=`${pageDetail.content}`)
+    else
+      input(id="artical-content" style="display: none" value=`请输入内容`)
+  style(type="text/css").
+    .toolbar {
+        border: 1px solid #ccc;
+     }
+    .text {
+        border: 1px solid #ccc
+    }
   script(type="text/javascript").
     (() => {
         var E = window.wangEditor;
-        editor = new E('#editor');
+        editor = new E('#edit-operate', '#editor');
         editor.customConfig.uploadImgServer = '/artical/upload';
         editor.customConfig.uploadFileName = 'file'
         editor.create();
+        const articalContent = $('#artical-content').val();
+        editor.txt.html(articalContent);
     })();
   script(type="text/javascript").
       "use strict"
@@ -62,5 +84,5 @@ block content
         });
       }
   div(class="col-sm-7")
-    button(class="btn btn-info", id="edit-submit-button" onClick="getContent()") 提交
-  include footer.jade
+    button(class="btn btn-info", id="edit-submit-button" onClick="getContent()") 发表日志
+   include footer.jade
