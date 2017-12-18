@@ -29,6 +29,8 @@ block content
      input(id="artical-content" style="display: none" value=`${pageDetail.content}`)
     else
       input(id="artical-content" style="display: none" value=`请输入内容`)
+    if pageDetail
+     input(id="artical-id" style="display: none" value=`${pageDetail.id}`)
   style(type="text/css").
     .toolbar {
         border: 1px solid #ccc;
@@ -49,6 +51,7 @@ block content
   script(type="text/javascript").
       "use strict"
       function getContent() {
+        const id = $("#artical-id").val();
         const title = $("#title").val();
         const description = $("#description").val();
         const content = window.editor.txt.html();
@@ -61,27 +64,51 @@ block content
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         };
-        fetch('/artical/edit', {
-          method: 'POST',
-          credentials: 'include',
-          headers: headers,
-          body: JSON.stringify(params)
-        }).then((response) => {
-          const { statusText, status } = response;
-          return response.json().then(res => {
-            return {
-              data: res,
-              statusCode: status,
-              message: statusText,
-              success: true
-            }
-          })
-        }).then((res) => {
-          location.href = '/artical/list';
-          return res
-        }).catch(err => {
-          alert('操作失败，服务器异常')
-        });
+        if (id) {
+          fetch(`/artical/edit/${id}`, {
+            method: 'put',
+            credentials: 'include',
+            headers: headers,
+            body: JSON.stringify(params)
+          }).then((response) => {
+            const { statusText, status } = response;
+            return response.json().then(res => {
+              return {
+                data: res,
+                statusCode: status,
+                message: statusText,
+                success: true
+              }
+            })
+          }).then((res) => {
+            location.href = '/artical/list';
+            return res
+          }).catch(err => {
+            alert('操作失败，服务器异常')
+          });
+        } else {
+          fetch('/artical/edit', {
+            method: 'POST',
+            credentials: 'include',
+            headers: headers,
+            body: JSON.stringify(params)
+          }).then((response) => {
+            const { statusText, status } = response;
+            return response.json().then(res => {
+              return {
+                data: res,
+                statusCode: status,
+                message: statusText,
+                success: true
+              }
+            })
+          }).then((res) => {
+            location.href = '/artical/list';
+            return res
+          }).catch(err => {
+            alert('操作失败，服务器异常')
+          });
+          }
       }
   div(class="col-sm-7")
     button(class="btn btn-info", id="edit-submit-button" onClick="getContent()") 发表日志

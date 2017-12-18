@@ -43,12 +43,10 @@ router.post('/upload', (req, res, next) => {
 });
 // 进入编辑日志页面
 router.get('/edit/:id', (req, res, next) => {
- console.log('req.params.id', req.params.id);
  if (req.params.id) {
   var id = mongoose.Types.ObjectId(req.params.id);
   PageModel.findById(id, (err, data) => {
     if (data) {
-      console.log('data', data);
       res.render('editPageView', { pageDetail: data, userName: req.cookies.user});
     } else {
       res.send({err})
@@ -93,7 +91,7 @@ router.put('/edit/:id', (req, res, next) => {
       author: author,
       createTime: createTime
   }
-  PageModel.update({"id": id}, newPage, (err, data) => {
+  PageModel.update({"_id": id}, newPage, (err, data) => {
       if (data) {
         res.send({data: 'success'})
       } else {
