@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const crypto = require('crypto');
 var users = require('../models/users');
 
+// 没有使用next() 而是使用了promise作为promise的练习
 function getUserPromise(name, users) {
     return new Promise((resolve, reject) => {
         users.find({name: name}, (err, data) => {
@@ -19,9 +21,11 @@ function checkStatus(exitUser, req, res) {
     if (exitUser.length > 0) {
             res.render('reg', { warning: '该用户名称已存在' });
         } else {
+            let sha1 = crypto.createHash("sha1");
+            let newPassword = sha1.update(req.body.password + '303echo227vic').digest('hex');            
             const newUser = {
                 name: req.body.name,
-                password: req.body.password
+                password: newPassword
             }
             const user = new users(newUser);
             user.save((err) => {
