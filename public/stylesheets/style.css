@@ -111,3 +111,6 @@ a {
 .artical-detlte:hover {
    cursor: pointer;
 }
+.content-container {
+  min-height: 700px;
+}
