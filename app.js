@@ -6,10 +6,19 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
-var bluebird = require('bluebird');
-mongoose.Promise=bluebird;
+// var bluebird = require('bluebird');
+// mongoose.Promise=bluebird;
 var config = require('./config');
-mongoose.connection.openUri(config.db.mongodb);
+const options = {
+  useMongoClient: true,
+	user : "vic",
+	pass : "303304",
+  auth : {authSource: 'admin'},
+}
+// mongoose.connect('mongodb://vic:303304@176.122.176.20: 27017/weiBoDataBase?authSource=admin');
+mongoose.connect('mongodb://127.0.0.1:27017/weiBoDataBase', options);
+
+mongoose.Promise = global.Promise;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -35,6 +44,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/artical', function(req, res, next) {
+  var author = req.cookies.user;
+  if (author) {
+    next();
+  } else {
+    res.redirect('/login')
+  }
+});
 // 登陆
 // 注册
 // 文章 增减查删
